@@ -6,7 +6,7 @@
 
 
 [![Backend Deploy to Vercel](https://img.shields.io/badge/Backend_Deployed_Vercel_Link-0A66C2?style=for-the-badge&logo=ko-fi&logoColor=white)]()
-[![Deployed App Vercel Link](https://img.shields.io/badge/Deployed_App_Vercel_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)]()
+[![Deployed App Vercel Link](https://img.shields.io/badge/Deployed_App_Vercel_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://bpk-assign-xnp5.vercel.app/)
 
 
 
@@ -41,7 +41,7 @@
    
 - #### For Styling:-  
 
-   - `Material UI `
+   - `Chakra UI `
   
 - #### For live Project: -
    - `Vercel`
