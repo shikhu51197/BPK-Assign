@@ -47,24 +47,24 @@ export const AddStudent= catchAsyncError(async (req, res, next) => {
 
   
   });
+  export const EditStudent = catchAsyncError(async (req, res, next) => {
+    const {_id} = req.params
+    const { name, studentId, major, enrollmentDate } = req.body;
 
-   export const EditStudent = catchAsyncError(async (req, res, next) => {
-    
-      const { id , name, studentId, major, enrollmentDate } = req.body;
-      
+
   
-      if (!id || !name || !studentId || !major || !enrollmentDate) {
-        return next(new ErrorHandler("Please provide all  details.", 400));
-      }
+    if (!_id || !name || !studentId || !major || !enrollmentDate) {
+      return next(new ErrorHandler("Please provide all details.", 400));
+    }
   
-      const studentdata = await Student.findById(id);
+    const studentdata = await Student.findById(_id);
   
     if (!studentdata) {
       return next(new ErrorHandler("Student not found.", 404));
     }
   
     // Update contact details
-    studentdata.name = name,
+    studentdata.name = name;
     studentdata.major = major;
     studentdata.studentId = studentId;
     studentdata.enrollmentDate = enrollmentDate;
@@ -76,16 +76,16 @@ export const AddStudent= catchAsyncError(async (req, res, next) => {
       message: "Student details updated successfully.",
       updatedStudentdetails: studentdata,
     });
-
   });
+  
 
  
 export const deleteStudent = catchAsyncError(async (req, res, next) => {
 
-    const  {id}  = req.body;
+    const  {_id}  = req.params;
  
   
-    const deletedStudent = await Student.findByIdAndDelete(id);
+    const deletedStudent = await Student.findByIdAndDelete(_id);
   
     if (!deletedStudent) {
       return res.status(404).json({

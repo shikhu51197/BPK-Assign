@@ -4,7 +4,7 @@ import axios from "axios";
 export const getAllStudent = () => (dispatch) => {
   dispatch({ type: types.GET_Student_REQUEST });
   return axios
-    .get(` https://bpk-24ud.onrender.com/api/v1/student`)
+    .get(`http://localhost:4000/api/v1/student`)
     .then((res) => {
       dispatch({ type: types.GET_Student_SUCCESS, payload: res.data });
     })
@@ -17,7 +17,7 @@ export const postStudent =({ name, studentId, major, enrollmentDate }) =>(dispat
     dispatch({ type: types.POST_Student_REQUEST });
 
     return axios
-      .post(`https://bpk-24ud.onrender.com/api/v1/addstudent`, {
+      .post(`http://localhost:4000/api/v1/addstudent`, {
         name,
         studentId,
         major,
@@ -36,37 +36,40 @@ export const postStudent =({ name, studentId, major, enrollmentDate }) =>(dispat
       });
   };
 
-export const deleteStudent = (id) => (dispatch) => {
-  console.log(id);
+export const deleteStudent = (_id) => (dispatch) => {
+  console.log(_id);
   dispatch({ type: types.DELETE_Student_REQUEST });
 
+  return  axios
+  .delete(`http://localhost:4000/api/v1/deletestudent/${_id}`)
+  .then((res) => {
+    console.log(res.data);
+    dispatch({ type: types.DELETE_Student_SUCCESS, payload: res.data });
+  })
+  .catch((e) => {
+    dispatch({ type: types.DELETE_Student_FAILURE, payload: e });
+  });
+};
+
+export const editStudent1 = (_id , name , date , studentid , major) => (dispatch) => {
+console.log(_id )
+  
+  dispatch({ type: types.EDIT_Student_REQUEST });
+
   return axios
-    .delete(`https://bpk-24ud.onrender.com/api/v1/deletestudent/${id}`)
+    .put(`http://localhost:4000/api/v1/editstudent/${_id}`,{
+      name:name,
+      enrollmentDate:date,
+      studentId:studentid,
+      major:major
+
+    })
     .then((res) => {
-      console.log(res.data);
-      dispatch({ type: types.DELETE_Student_SUCCESS, payload: res.data });
+      dispatch({ type: types.EDIT_Student_SUCCESS, payload: res.data });
     })
     .catch((e) => {
-      dispatch({ type: types.DELETE_Student_FAILURE, payload: e });
+      dispatch({ type: types.EDIT_Student_FAILURE, payload: e });
+      console.log(e)
     });
 };
 
-export const editStudent =(name, studentId, major, enrollmentDate, id) => (dispatch) => {
-    console.log(name, studentId, major, enrollmentDate, id);
-    dispatch({ type: types.EDIT_Student_REQUEST });
-
-    return axios
-      .put(`https://bpk-24ud.onrender.com/api/v1/editstudent`, {
-        name: name,
-        studentId: studentId,
-        major: major,
-        enrollmentDate: enrollmentDate,
-        id: id,
-      })
-      .then((res) => {
-        dispatch({ type: types.EDIT_Student_SUCCESS, payload: res.data });
-      })
-      .catch((e) => {
-        dispatch({ type: types.EDIT_Student_FAILURE, payload: e });
-      });
-  };
