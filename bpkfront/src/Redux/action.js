@@ -4,7 +4,7 @@ import axios from "axios";
 export const getAllStudent = () => (dispatch) => {
   dispatch({ type: types.GET_Student_REQUEST });
   return axios
-    .get(`http://localhost:4000/api/v1/student`)
+    .get(`https://bpk-assign.vercel.app/api/v1/student`)
     .then((res) => {
       dispatch({ type: types.GET_Student_SUCCESS, payload: res.data });
     })
@@ -17,7 +17,7 @@ export const postStudent =({ name, studentId, major, enrollmentDate }) =>(dispat
     dispatch({ type: types.POST_Student_REQUEST });
 
     return axios
-      .post(`http://localhost:4000/api/v1/addstudent`, {
+      .post(`https://bpk-assign.vercel.app/api/v1/addstudent`, {
         name,
         studentId,
         major,
@@ -41,7 +41,7 @@ export const deleteStudent = (_id) => (dispatch) => {
   dispatch({ type: types.DELETE_Student_REQUEST });
 
   return  axios
-  .delete(`http://localhost:4000/api/v1/deletestudent/${_id}`)
+  .delete(`https://bpk-assign.vercel.app/api/v1/deletestudent/${_id}`)
   .then((res) => {
     console.log(res.data);
     dispatch({ type: types.DELETE_Student_SUCCESS, payload: res.data });
@@ -57,7 +57,7 @@ console.log(_id )
   dispatch({ type: types.EDIT_Student_REQUEST });
 
   return axios
-    .put(`http://localhost:4000/api/v1/editstudent/${_id}`,{
+    .put(`https://bpk-assign.vercel.app/api/v1/editstudent/${_id}`,{
       name:name,
       enrollmentDate:date,
       studentId:studentid,
