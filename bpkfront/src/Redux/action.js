@@ -1,6 +1,8 @@
 import * as types from "./actiontype";
 import axios from "axios";
 
+
+
 export const getAllStudent = () => (dispatch) => {
   dispatch({ type: types.GET_Student_REQUEST });
   return axios
